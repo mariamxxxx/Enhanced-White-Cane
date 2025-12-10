@@ -1,0 +1,28 @@
+library IEEE;
+use IEEE.STD_LOGIC_1164.ALL;
+
+entity obstacle is
+    Port (
+        system_on   : in  STD_LOGIC;
+        ir_sensor   : in  STD_LOGIC;
+        blink       : in  STD_LOGIC;
+        vibration   : out STD_LOGIC);
+        --led_warning : out STD_LOGIC
+    
+end obstacle;
+
+architecture Behavioral of obstacle is
+begin
+
+    process(system_on, ir_sensor, blink)
+    begin
+        if system_on = '1' and ir_sensor = '0' then
+            vibration   <= '1';
+           -- led_warning <= blink;
+        else
+            vibration   <= '0';
+          --  led_warning <= '0';
+        end if;
+    end process;
+
+end Behavioral;

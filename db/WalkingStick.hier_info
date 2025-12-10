@@ -1,0 +1,58 @@
+|WalkingStick
+MAX10_CLK1_50 => clock_divider:CDIV.clk
+switch_W => obstacle:OBS.system_on
+switch_W => drop_detector:DROP.system_on
+switch_W => status_led_W.DATAIN
+ir_sensor_W => obstacle:OBS.ir_sensor
+touch_W => drop_detector:DROP.touch
+led_drop_W << drop_detector:DROP.led_drop
+status_led_W << switch_W.DB_MAX_OUTPUT_PORT_TYPE
+vibration_W << obstacle:OBS.vibration
+buzzer_W << drop_detector:DROP.buzzer
+
+
+|WalkingStick|clock_divider:CDIV
+clk => counter[0].CLK
+clk => counter[1].CLK
+clk => counter[2].CLK
+clk => counter[3].CLK
+clk => counter[4].CLK
+clk => counter[5].CLK
+clk => counter[6].CLK
+clk => counter[7].CLK
+clk => counter[8].CLK
+clk => counter[9].CLK
+clk => counter[10].CLK
+clk => counter[11].CLK
+clk => counter[12].CLK
+clk => counter[13].CLK
+clk => counter[14].CLK
+clk => counter[15].CLK
+clk => counter[16].CLK
+clk => counter[17].CLK
+clk => counter[18].CLK
+clk => counter[19].CLK
+clk => counter[20].CLK
+clk => counter[21].CLK
+clk => counter[22].CLK
+clk => counter[23].CLK
+clk => counter[24].CLK
+clk => counter[25].CLK
+blink <= counter[25].DB_MAX_OUTPUT_PORT_TYPE
+
+
+|WalkingStick|obstacle:OBS
+system_on => process_0.IN0
+ir_sensor => process_0.IN1
+blink => ~NO_FANOUT~
+vibration <= process_0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|WalkingStick|drop_detector:DROP
+system_on => process_0.IN0
+touch => process_0.IN1
+blink => led_drop.DATAB
+buzzer <= process_0.DB_MAX_OUTPUT_PORT_TYPE
+led_drop <= led_drop.DB_MAX_OUTPUT_PORT_TYPE
+
+

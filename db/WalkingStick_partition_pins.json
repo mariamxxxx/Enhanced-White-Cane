@@ -1,0 +1,41 @@
+{
+	"partitions" : [
+		{
+			"name" : "Top",
+			"pins" : [
+				{
+					"name" : "led_drop_W",
+					"strict" : false
+				},
+				{
+					"name" : "status_led_W",
+					"strict" : false
+				},
+				{
+					"name" : "vibration_W",
+					"strict" : false
+				},
+				{
+					"name" : "buzzer_W",
+					"strict" : false
+				},
+				{
+					"name" : "switch_W",
+					"strict" : false
+				},
+				{
+					"name" : "touch_W",
+					"strict" : false
+				},
+				{
+					"name" : "ir_sensor_W",
+					"strict" : false
+				},
+				{
+					"name" : "MAX10_CLK1_50",
+					"strict" : false
+				}
+			]
+		}
+	]
+}

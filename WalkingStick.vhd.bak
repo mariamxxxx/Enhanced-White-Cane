@@ -1,0 +1,56 @@
+library IEEE;
+use IEEE.STD_LOGIC_1164.ALL;
+use IEEE.NUMERIC_STD.ALL;
+
+entity WalkingStick is
+    Port (
+        MAX10_CLK1_50 : in  STD_LOGIC;
+
+        SW0           : in  STD_LOGIC;
+
+        GPIO_0        : in  STD_LOGIC;  -- IR sensor
+        GPIO_1        : in  STD_LOGIC;  -- Touch sensor
+
+        LEDR0         : out STD_LOGIC;  -- Warning LED
+        LEDR1         : out STD_LOGIC;  -- Drop LED
+	LEDR2 	      : out STD_LOGIC;  -- status LED
+
+        GPIO_2        : out STD_LOGIC;  -- Vibration (to transistor)
+        GPIO_3        : out STD_LOGIC  -- Buzzer (to transistor)
+    );
+end WalkingStick;
+
+architecture Structural of WalkingStick is
+
+    signal blink_sig : STD_LOGIC;
+
+begin
+  	LEDR2 <= SW0;
+    -- Clock divider
+    CDIV : entity work.clock_divider
+        port map (
+            clk   => MAX10_CLK1_50,
+            blink => blink_sig
+        );
+
+    -- Obstacle Module
+    OBS : entity work.obstacle
+        port map (
+            system_on   => SW0,
+            ir_sensor   => GPIO_0,
+            blink       => blink_sig,
+            vibration   => GPIO_2,
+            led_warning => LEDR0
+        );
+
+    -- Drop Detector
+    DROP : entity work.drop_detector
+        port map (
+            system_on => SW0,
+            touch     => GPIO_1,
+            blink     => blink_sig,
+            buzzer    => GPIO_3,
+            led_drop  => LEDR1
+        );
+
+end Structural;
