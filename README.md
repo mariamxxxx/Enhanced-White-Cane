@@ -101,6 +101,3 @@ The master switch (`switch_W`) feeds every process. When the switch is low the c
 - Add a rechargeable Li-ion battery pack and onboard charging IC with current sensing.
 - Log usage duration via on-board flash and expose it over USB for analytics.
 - Implement adaptive vibration patterns to represent obstacle distance or orientation.
-
-## Acknowledgements
-Developed by the Enhanced White Cane team for the Digital System Design course (Semester 5). Sensors and actuators were sourced from standard maker-friendly modules; HDL was authored in VHDL and synthesized with Quartus Prime Lite.
